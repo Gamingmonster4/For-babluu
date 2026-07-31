@@ -109,8 +109,21 @@ button{ font-family:inherit; cursor:pointer; border:none; background:none; }
   transition:all .25s ease;
 }
 .music-player:hover .music-panel, .music-player:focus-within .music-panel{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
-.music-title{ margin:0; font-family:'Caveat',cursive; font-size:1rem; }
+.music-title{ margin:0; font-family:'Caveat',cursive; font-size:1rem; white-space:nowrap; }
 #volumeSlider{ width:90px; accent-color:var(--accent-red); }
+
+.music-source-switch{ display:flex; gap:4px; background:rgba(90,70,54,.08); border-radius:999px; padding:3px; }
+.music-source-btn{ padding:4px 10px; border-radius:999px; font-size:.62rem; color:var(--ink-soft); transition:all .2s ease; }
+.music-source-btn.active{ background:var(--accent-red); color:#fff; }
+
+/* Official Spotify embed — tucked off-screen but still "live" so it can autoplay/loop.
+   We drive play/pause/volume through our own round button; this iframe is the audio engine. */
+.spotify-embed-wrap{
+  position:fixed; right:18px; bottom:-90px; width:280px; z-index:59;
+  border-radius:16px; overflow:hidden; box-shadow:var(--shadow-soft);
+  opacity:0; pointer-events:none; transition:all .3s ease;
+}
+.spotify-embed-wrap.visible{ bottom:82px; opacity:1; pointer-events:auto; }
 
 /* ================= PAGE 1: ENVELOPE ================= */
 .page-envelope{ min-height:100svh; position:relative; overflow:hidden; padding:0; opacity:1; transform:none; }

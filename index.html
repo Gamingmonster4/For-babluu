@@ -27,12 +27,33 @@
     <span class="music-disc"></span>
   </button>
   <div class="music-panel">
-    <p class="music-title">our song 🎧</p>
+    <p class="music-title" id="musicTitleLabel">Until I Found You 🎧</p>
+
+    <!-- Source switch: your own mp3, or the real song via Spotify's own player -->
+    <div class="music-source-switch">
+      <button class="music-source-btn active" id="sourceSpotifyBtn" data-source="spotify">Spotify</button>
+      <button class="music-source-btn" id="sourceMp3Btn" data-source="mp3">My MP3</button>
+    </div>
+
     <input type="range" id="volumeSlider" min="0" max="100" value="60" />
   </div>
+
+  <!-- Local mp3 fallback (used only when "My MP3" is selected) -->
   <audio id="bgMusic" loop preload="none">
     <source src="assets/music/music.mp3" type="audio/mpeg" />
   </audio>
+</div>
+
+<!-- Spotify embed (official widget — streams the real track, nothing hosted by us) -->
+<div class="spotify-embed-wrap" id="spotifyEmbedWrap">
+  <iframe
+    id="spotifyFrame"
+    src="https://open.spotify.com/embed/track/4MuCzsOI2v0cMp5ERoUJLy?utm_source=generator&theme=0"
+    width="100%" height="80" frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy"
+    title="Until I Found You — Stephen Sanchez">
+  </iframe>
 </div>
 
 <!-- ================= PAGE 1 — ENVELOPE LANDING ================= -->

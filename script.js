@@ -708,19 +708,55 @@
     const iconPlay = $('#iconPlay');
     const iconPause = $('#iconPause');
     const vol = $('#volumeSlider');
+    const titleLabel = $('#musicTitleLabel');
+    const embedWrap = $('#spotifyEmbedWrap');
+    const sourceSpotifyBtn = $('#sourceSpotifyBtn');
+    const sourceMp3Btn = $('#sourceMp3Btn');
     audio.volume = 0.6;
 
+    let source = 'spotify'; // 'spotify' | 'mp3'
+    let spotifyOpen = false;
+
+    function setSource(next){
+      source = next;
+      sourceSpotifyBtn.classList.toggle('active', source==='spotify');
+      sourceMp3Btn.classList.toggle('active', source==='mp3');
+      titleLabel.textContent = source==='spotify' ? 'Until I Found You 🎧' : 'our song 🎧';
+
+      // stop whichever source was active before switching
+      audio.pause();
+      embedWrap.classList.remove('visible');
+      spotifyOpen = false;
+      toggle.classList.remove('playing');
+      iconPlay.style.display='block'; iconPause.style.display='none';
+    }
+
+    sourceSpotifyBtn.addEventListener('click', ()=> setSource('spotify'));
+    sourceMp3Btn.addEventListener('click', ()=> setSource('mp3'));
+
     toggle.addEventListener('click', ()=>{
-      if(audio.paused){
-        audio.play().catch(()=>showToast('add music.mp3 to assets/music 🎵'));
-        toggle.classList.add('playing');
-        iconPlay.style.display='none'; iconPause.style.display='block';
+      if(source === 'mp3'){
+        if(audio.paused){
+          audio.play().catch(()=>showToast('add music.mp3 to assets/music 🎵'));
+          toggle.classList.add('playing');
+          iconPlay.style.display='none'; iconPause.style.display='block';
+        } else {
+          audio.pause();
+          toggle.classList.remove('playing');
+          iconPlay.style.display='block'; iconPause.style.display='none';
+        }
       } else {
-        audio.pause();
-        toggle.classList.remove('playing');
-        iconPlay.style.display='block'; iconPause.style.display='none';
+        // Spotify source: reveal the official embed — its own play button
+        // (inside the iframe) handles actual playback and licensing.
+        spotifyOpen = !spotifyOpen;
+        embedWrap.classList.toggle('visible', spotifyOpen);
+        toggle.classList.toggle('playing', spotifyOpen);
+        iconPlay.style.display = spotifyOpen ? 'none' : 'block';
+        iconPause.style.display = spotifyOpen ? 'block' : 'none';
+        if(spotifyOpen) showToast('tap play inside the Spotify card ▶️', 2600);
       }
     });
+
     vol.addEventListener('input', ()=>{ audio.volume = vol.value/100; });
   }
 
