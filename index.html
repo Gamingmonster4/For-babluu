@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>A Special Delivery, For My Babluuu</title>
+<meta name="description" content="A Girlfriend's Day letter, just for you." />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ================= AMBIENT LAYERS (persist across whole site) ================= -->
+<div class="ambient-hearts" id="ambientHearts" aria-hidden="true"></div>
+<div class="ambient-sparkles" id="ambientSparkles" aria-hidden="true"></div>
+
+<!-- ================= FLOATING MUSIC PLAYER ================= -->
+<div class="music-player" id="musicPlayer" aria-hidden="true">
+  <button class="music-toggle" id="musicToggle" aria-label="Play music">
+    <svg id="iconPlay" viewBox="0 0 24 24" width="20" height="20"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+    <svg id="iconPause" viewBox="0 0 24 24" width="20" height="20" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/></svg>
+    <span class="music-disc"></span>
+  </button>
+  <div class="music-panel">
+    <p class="music-title">our song 🎧</p>
+    <input type="range" id="volumeSlider" min="0" max="100" value="60" />
+  </div>
+  <audio id="bgMusic" loop preload="none">
+    <source src="assets/music/music.mp3" type="audio/mpeg" />
+  </audio>
+</div>
+
+<!-- ================= PAGE 1 — ENVELOPE LANDING ================= -->
+<section class="page page-envelope" id="pageEnvelope">
+  <div class="spiral-bg" aria-hidden="true"></div>
+  <div class="floaters" id="envelopeFloaters" aria-hidden="true"></div>
+
+  <div class="envelope-stage">
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Tap to open your letter">
+      <div class="envelope-back"></div>
+      <div class="letter-inside">
+        <p class="letter-peek">For my Babluuu...</p>
+      </div>
+      <div class="envelope-flap"></div>
+      <div class="wax-seal">
+        <span>20<em>•</em>01<em>•</em>2025</span>
+      </div>
+    </div>
+    <p class="tap-hint">tap the envelope to open</p>
+  </div>
+
+  <div class="envelope-caption">
+    <h1 class="script-title">A Special Delivery</h1>
+    <p class="script-sub">For My Babluuu ❤️</p>
+  </div>
+</section>
+
+<!-- Petal burst overlay -->
+<div class="petal-burst" id="petalBurst" aria-hidden="true"></div>
+
+<!-- ================= PAGE 2 — HERO / COUNTER ================= -->
+<section class="page page-hero" id="pageHero">
+  <div class="doodles doodles-hero" aria-hidden="true"></div>
+
+  <h2 class="page-title">Happy Girlfriend's Day <span class="heart-emoji">❤️</span></h2>
+
+  <div class="teddy-wrap" id="teddyWrap" role="button" tabindex="0" aria-label="Tap the teddy bear">
+    <svg class="teddy-svg" viewBox="0 0 200 200" width="150" height="150">
+      <circle cx="50" cy="40" r="20" fill="#c9986b"/>
+      <circle cx="150" cy="40" r="20" fill="#c9986b"/>
+      <circle cx="50" cy="40" r="10" fill="#a97c53"/>
+      <circle cx="150" cy="40" r="10" fill="#a97c53"/>
+      <circle cx="100" cy="90" r="65" fill="#d9a876"/>
+      <circle cx="70" cy="90" r="10" fill="#3a2a1c"/>
+      <circle cx="130" cy="90" r="10" fill="#3a2a1c"/>
+      <ellipse cx="100" cy="115" rx="18" ry="12" fill="#3a2a1c"/>
+      <circle cx="100" cy="175" r="55" fill="#e0b587"/>
+      <circle cx="55" cy="150" r="22" fill="#d9a876"/>
+      <circle cx="145" cy="150" r="22" fill="#d9a876"/>
+    </svg>
+    <div class="teddy-bow"></div>
+    <div class="teddy-speech" id="teddySpeech">You're my favorite person 🤎</div>
+  </div>
+
+  <div class="counter-card" id="counterCard" role="button" tabindex="0" aria-label="Tap to see full detail">
+    <p class="counter-label">we've been us for</p>
+    <div class="counter-grid" id="counterGrid">
+      <div class="counter-unit"><span class="counter-num" id="cYears">0</span><span class="counter-word">years</span></div>
+      <div class="counter-unit"><span class="counter-num" id="cMonths">0</span><span class="counter-word">months</span></div>
+      <div class="counter-unit"><span class="counter-num" id="cDays">0</span><span class="counter-word">days</span></div>
+    </div>
+    <div class="counter-grid counter-grid-small" id="counterGridSmall">
+      <div class="counter-unit"><span class="counter-num" id="cHours">0</span><span class="counter-word">hrs</span></div>
+      <div class="counter-unit"><span class="counter-num" id="cMinutes">0</span><span class="counter-word">min</span></div>
+      <div class="counter-unit"><span class="counter-num" id="cSeconds">0</span><span class="counter-word">sec</span></div>
+    </div>
+    <p class="counter-hint">tap for the exact number ✨</p>
+  </div>
+
+  <button class="scroll-arrow" id="scrollArrow" aria-label="Scroll down">
+    <span>scroll down</span>
+    <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 16l-6-6h12z" fill="currentColor"/></svg>
+  </button>
+</section>
+
+<!-- ================= PAGE 3 — LOVE LETTER ================= -->
+<section class="page page-letter" id="pageLetter">
+  <div class="doodles doodles-letter" aria-hidden="true"></div>
+  <div class="letter-layout">
+    <div class="polaroid">
+      <img src="assets/images/cover-photo.jpg" alt="Us" onerror="this.parentElement.classList.add('polaroid-empty')" />
+      <p class="polaroid-caption">us, always</p>
+    </div>
+
+    <div class="paper-letter">
+      <div class="paper-fold-top"></div>
+      <div class="wax-seal small-seal"><span>20<em>•</em>01</span></div>
+      <p class="handwritten-body">
+        Happy Girlfriend's Day, my love.<br/><br/>
+        I don't think I say this enough, but thank you for being you.
+        Thank you for your patience, your warmth, and for making the
+        ordinary days feel like something worth remembering.<br/><br/>
+        No matter where life takes us, I promise to keep choosing you,
+        supporting you, and loving you — with all my heart.<br/><br/>
+        Happy Girlfriend's Day, my beautiful girl. Forever yours, Atharva.
+      </p>
+      <div class="letter-petals" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 4 — GIFT SELECTION ================= -->
+<section class="page page-gifts" id="pageGifts">
+  <h2 class="page-title">A Little Something For You</h2>
+  <p class="page-sub">pick one — or all three ✨</p>
+
+  <div class="gift-cards">
+    <button class="gift-card" data-open="memories">
+      <span class="gift-card-icon">❤️</span>
+      <span class="gift-card-title">Memories</span>
+      <span class="gift-card-desc">our little scrapbook</span>
+      <span class="gift-card-check" id="check-memories">✓</span>
+    </button>
+    <button class="gift-card" data-open="bouquet">
+      <span class="gift-card-icon">🌸</span>
+      <span class="gift-card-title">Build Your Bouquet</span>
+      <span class="gift-card-desc">flowers, made by you</span>
+      <span class="gift-card-check" id="check-bouquet">✓</span>
+    </button>
+    <button class="gift-card" data-open="pizza">
+      <span class="gift-card-icon">🎁</span>
+      <span class="gift-card-title">Open Gift</span>
+      <span class="gift-card-desc">something cheesy</span>
+      <span class="gift-card-check" id="check-pizza">✓</span>
+    </button>
+  </div>
+
+  <button class="continue-btn" id="continueToFinal">continue to the end →</button>
+</section>
+
+<!-- ================= OVERLAY: MEMORIES ================= -->
+<div class="overlay" id="overlayMemories">
+  <button class="back-btn" data-close="memories">← back</button>
+  <div class="overlay-inner memories-intro" id="memoriesIntro">
+    <div class="envelope small-envelope" id="memoriesEnvelope" role="button" tabindex="0">
+      <div class="envelope-back"></div>
+      <div class="envelope-flap"></div>
+    </div>
+    <p class="script-sub">a little envelope of us</p>
+    <a class="spotify-btn" href="#" id="spotifyLink" target="_blank" rel="noopener">🎧 open our playlist</a>
+    <button class="continue-btn" id="openScrapbook">open memories</button>
+  </div>
+
+  <div class="scrapbook" id="scrapbook" hidden>
+    <div class="scrapbook-page" id="scrapbookPage">
+      <!-- populated by JS -->
+    </div>
+    <div class="scrapbook-nav">
+      <button id="scrapPrev" aria-label="Previous page">‹</button>
+      <span id="scrapCount">1 / 15</span>
+      <button id="scrapNext" aria-label="Next page">›</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= OVERLAY: BOUQUET BUILDER ================= -->
+<div class="overlay" id="overlayBouquet">
+  <button class="back-btn" data-close="bouquet">← back</button>
+  <div class="overlay-inner bouquet-builder">
+
+    <div class="bouquet-step" id="bouquetStepFlowers">
+      <h3 class="script-title small-title">Build Your Bouquet 🌸</h3>
+      <p class="page-sub">choose your favourite flowers</p>
+      <div class="flower-options" id="flowerOptions">
+        <button class="flower-option" data-flower="rose">🌹<span>Rose</span></button>
+        <button class="flower-option" data-flower="tulip">🌷<span>Tulip</span></button>
+        <button class="flower-option" data-flower="lily">🌺<span>Lily</span></button>
+        <button class="flower-option" data-flower="sunflower">🌻<span>Sunflower</span></button>
+        <button class="flower-option" data-flower="babysbreath">🤍<span>Baby's Breath</span></button>
+        <button class="flower-option" data-flower="daisy">🌼<span>Daisy</span></button>
+      </div>
+      <button class="continue-btn" id="toRibbonStep">next: ribbon →</button>
+    </div>
+
+    <div class="bouquet-step" id="bouquetStepRibbon" hidden>
+      <h3 class="script-title small-title">Choose a Ribbon</h3>
+      <div class="swatch-options" id="ribbonOptions">
+        <button class="swatch" data-ribbon="#f4a6c1" style="background:#f4a6c1">Pink</button>
+        <button class="swatch" data-ribbon="#ffffff" style="background:#ffffff;border:1px solid #ddd;color:#333">White</button>
+        <button class="swatch" data-ribbon="#d1495b" style="background:#d1495b">Red</button>
+      </div>
+      <h3 class="script-title small-title">Choose Wrapping</h3>
+      <div class="swatch-options" id="wrapOptions">
+        <button class="swatch" data-wrap="#f7e8d4" style="background:#f7e8d4;color:#5a4632">Kraft</button>
+        <button class="swatch" data-wrap="#fff3f6" style="background:#fff3f6;color:#a75;border:1px solid #eee">Blush</button>
+        <button class="swatch" data-wrap="#faf6ee" style="background:#faf6ee;color:#5a4632;border:1px solid #eee">Cream</button>
+      </div>
+      <button class="continue-btn" id="toRevealStep">assemble my bouquet →</button>
+    </div>
+
+    <div class="bouquet-step" id="bouquetStepReveal" hidden>
+      <div class="bouquet-reveal-stage">
+        <div class="bouquet-wrap" id="bouquetWrap">
+          <div class="bouquet-flowers" id="bouquetFlowers"></div>
+        </div>
+        <div class="bouquet-sparkles" id="bouquetSparkles" aria-hidden="true"></div>
+      </div>
+      <p class="script-sub">I wish I could hand these to you in person ❤️</p>
+      <div class="bouquet-actions">
+        <button class="continue-btn" id="saveBouquet">save bouquet</button>
+        <button class="ghost-btn" id="rebuildBouquet">build again</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= OVERLAY: PIZZA GIFT ================= -->
+<div class="overlay" id="overlayPizza">
+  <button class="back-btn" data-close="pizza">← back</button>
+  <div class="overlay-inner pizza-scene">
+
+    <div class="gift-box" id="giftBox" role="button" tabindex="0">
+      <div class="gift-box-ribbon-v"></div>
+      <div class="gift-box-ribbon-h"></div>
+      <div class="gift-box-lid"></div>
+      <div class="gift-box-base"></div>
+      <div class="gift-box-bow">🎀</div>
+    </div>
+    <p class="tap-hint" id="giftBoxHint">tap to untie the ribbon</p>
+
+    <div class="pizza-wrap" id="pizzaWrap" hidden>
+      <p class="page-sub">a vegan pizza, made with love 🍕</p>
+      <div class="pizza" id="pizza">
+        <div class="pizza-slice" data-slice="1"></div>
+        <div class="pizza-slice" data-slice="2"></div>
+        <div class="pizza-slice" data-slice="3"></div>
+        <div class="pizza-slice" data-slice="4"></div>
+        <div class="pizza-slice" data-slice="5"></div>
+        <div class="pizza-slice" data-slice="6"></div>
+        <div class="pizza-slice" data-slice="7"></div>
+        <div class="pizza-slice" data-slice="8"></div>
+      </div>
+      <div class="pizza-popup" id="pizzaPopup"></div>
+    </div>
+
+    <div class="pizza-end" id="pizzaEnd" hidden>
+      <p class="script-title small-title">The pizza disappeared...</p>
+      <p class="script-sub">My love never will.</p>
+      <button class="continue-btn" data-close="pizza">back</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FINAL PAGE ================= -->
+<section class="page page-final" id="pageFinal">
+  <div class="night-sky" id="nightSky" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="fireflies" id="fireflies" aria-hidden="true"></div>
+
+  <div class="final-content">
+    <p class="script-title final-title">Every version of me<br/>chooses every version of you.</p>
+    <p class="date-motif">20 <em>•</em> 01 <em>•</em> 2025</p>
+
+    <button class="secret-btn" id="secretBtn" hidden>One Last Surprise ❤️</button>
+    <p class="secret-hint" id="secretHint">find everything above to unlock one more surprise</p>
+  </div>
+
+  <div class="fireworks-layer" id="fireworksLayer" aria-hidden="true"></div>
+</section>
+
+<!-- ================= SECRET ENDING ================= -->
+<div class="overlay overlay-secret" id="overlaySecret">
+  <div class="secret-stars" aria-hidden="true"></div>
+  <div class="secret-petals" aria-hidden="true"></div>
+  <div class="secret-content">
+    <div class="secret-photo-frame">
+      <img src="assets/images/secret-photo.jpg" alt="Us" onerror="this.parentElement.classList.add('polaroid-empty')" />
+    </div>
+    <p class="typing-text" id="typingText"></p>
+    <p class="secret-signature" id="secretSignature" hidden>Forever Yours,<br/>Atharva ❤️</p>
+    <button class="back-btn secret-back" data-close="secret">← close</button>
+  </div>
+</div>
+
+<!-- Easter-egg toast -->
+<div class="egg-toast" id="eggToast"></div>
+
+<!-- Hidden typed-word listener target -->
+<script src="script.js"></script>
+</body>
+</html>
